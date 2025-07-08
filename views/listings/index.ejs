@@ -1,0 +1,171 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+   #filters {
+     display:flex;
+     flex-wrap: wrap;
+     align-items: center;
+   }
+   .filter{
+    text-align: center;
+    margin-right: 2rem;
+    margin-top: 2rem;
+    opacity: 0.7;
+   }
+
+   .filter:hover {
+    opacity:1;
+    cursor: pointer;
+   }
+
+   .filter p {
+    font-size: 0.8rem;
+   }
+
+   .tax-info{
+     display: none;
+   }
+
+   .tax-toggle{
+    border: 1px solid black;
+    border-radius: 1rem;
+    height: 3.25rem;
+    padding: 1rem;
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+   }
+
+ .flexnav{
+  display: flex;
+  overflow:auto;
+ }
+   
+.filter a {
+  text-decoration: none;
+  
+}
+
+</style>
+
+<div id="filters">
+      
+      <div class="flexnav">
+  
+        <div class="filter" id="trending">
+           <div><a href="/listings/filter/trending"><i class="fa-solid fa-fire"></i>
+             <p>Trending</p>
+          </a></div>
+        </div>
+
+        <div class="filter" id="rooms">
+           <div><a href="/listings/filter/rooms"><i class="fa-solid fa-bed"></i>
+            <p>Rooms</p>
+          </a></div>
+        </div>
+
+         <div class="filter" id="iconicCities">
+           <div><a href="/listings/filter/iconicCities"><i class="fa-solid fa-mountain-city"></i>
+            <p>Iconic Cities</p>
+          </a></div>
+        </div>
+
+         <div class="filter" id="mountains">
+           <div><a href="/listings/filter/mountains"><i class="fa-solid fa-mountain"></i>
+            <p>Mountains</p>
+          </a></div>
+         </div>
+
+         <div class="filter" id="castles">
+           <div><a href="/listings/filter/castles"><i class="fa-brands fa-fort-awesome"></i>
+            <p>Castles</p>
+          </a></div>
+        </div>
+
+         <div class="filter" id="amazingPools">
+           <div><a href="/listings/filter/amazingPools"><i class="fa-solid fa-person-swimming"></i>
+             <p>Amazing Pools</p>
+          </a></div>
+        </div>
+
+          <div class="filter" id="camping">
+           <div><a href="/listings/filter/camping"><i class="fa-solid fa-campground"></i>
+            <p>Camping</p>
+          </a></div>
+        </div>
+
+         <div class="filter" id="farms">
+           <div><a href="/listings/filter/farms"><i class="fa-solid fa-cow"></i>
+            <p>Farms</p>
+          </a></div>
+         </div>
+
+          <div class="filter" id="arctic">
+           <div><a href="/listings/filter/arctic"><i class="fa-solid fa-snowflake"></i>
+            <p>Arctic</p>
+          </a></div>
+           
+         </div>
+
+         <div class="filter" id="domes">
+           <div><a href="/listings/filter/domes"><i class="fa-solid fa-igloo"></i>
+            <p>Domes</p>
+          </a></div>
+           
+         </div>
+
+       </div>
+        
+
+         <div class="tax-toggle ">
+             <div class="form-check form-switch form-check-reverse">
+              <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+              <label class="form-check-label" for="switchCheckDefault">Display total after taxes</label>
+             </div>
+         </div>
+      
+         
+     
+     
+  </div>
+
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+ <%for(let listing of allListings) { %>
+  <a href="/listings/<%=listing._id%>" class="listing-link">
+<div class="card listing-card" >
+  <img src="<%=listing.image.url%>" class="card-img-top" alt="listing_image" style="height: 20rem;">
+  <div class="card-img-overlay"></div>
+  <div class="card-body">
+    <p class="card-text">
+       <b><%=listing.title%><br></b> 
+         &#8377;<%=listing.price.toLocaleString("en-IN")%>/night
+         <i  class="tax-info" >&nbsp;+18% GST</i>
+  </p>
+  </div>
+</div>
+</a>
+<%}%>
+
+</div>
+
+<script>
+  let taxSwitch = document.getElementById("switchCheckDefault");
+  taxSwitch.addEventListener("click",()=>{
+     let taxInfo = document.getElementsByClassName("tax-info");
+     for(info of taxInfo) {
+      if(info.style.display != "inline"){
+        info.style.display = "inline" ;
+      } else {
+        info.style.display = "none" ;
+      }
+      
+     }
+  });
+
+
+</script>
+
+
+  
+
+
