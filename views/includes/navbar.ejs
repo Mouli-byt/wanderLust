@@ -18,6 +18,13 @@
     padding:0.5rem 3rem 0.5rem 3rem;
     font-size: 1rem;
   }
+
+ /* @media only screen and (max-width: 600px) {
+    .navbar{
+      height:250px
+    }
+} */
+
 </style>
 
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
@@ -64,3 +71,24 @@
     </div>
   </div>
 </nav>
+
+<script>
+
+let expandBtn = document.querySelector(".navbar-toggler-icon");
+
+let x = 0;
+
+expandBtn.addEventListener("click",  ()=> {
+   x++;
+   if(x%2==1){
+        console.log("exand btn clicked");
+    document.getElementsByClassName("navbar")[0].style.display = "flex";
+    document.getElementsByClassName("navbar")[0].style.height = "250px";
+   }
+   else{
+      document.getElementsByClassName("navbar")[0].style.height = "80px";
+   }
+ 
+});
+
+</script>
